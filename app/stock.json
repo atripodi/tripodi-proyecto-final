@@ -1,0 +1,81 @@
+[
+    {
+        "id": 1,
+        "nombre": "Taza serie 001",
+        "desc": "Taza de cerámica realizada a mano en torno alfarero esmaltada jaspeada.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item1.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 2,
+        "nombre": "Jarra serie 001",
+        "desc": "Mini jarra de cerámica realizada a mano en torno alfarero esmaltada color blanco.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item2.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 3,
+        "nombre": "Bowl serie 001",
+        "desc": "Mini bowl de cerámica realizado a mano en torno alfarero esmaltada color negro.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item3.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 4,
+        "nombre": "Florero serie 001",
+        "desc": " Mini florero de cerámica realizado a mano en torno alfarero esmaltado color natural.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item4.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 5,
+        "nombre": "Maceta serie 001",
+        "desc": "Maceta de cerámica realizada a mano en torno alfarero esmaltada en color natural.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item5.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 6,
+        "nombre": "Florero serie 002",
+        "desc": "Florero amorfo realizado a mano esmaltado en color blanco.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item6.jpeg",
+        "cantidad":1
+    },
+
+    {
+        "id": 7,
+        "nombre": "Taza serie 002",
+        "desc": "Taza de cerámica realizada a mano en torno alfarero esmaltada en color blanco.",
+        "dimensiones": "Dimensiones: xcm alto x xcm Ø",
+        "precio": 500,
+        "img": "/app/public/img/item7.jpeg",
+        "cantidad":1
+    },
+    {
+        "id": 8,
+        "nombre": "Servicio de enmarcación",
+        "desc": "Enmarcados hechos a mano por encargo. Buscamos la mejor opción para resaltar tu obra. Contactános!",
+        "dimensiones": "Dimensiones: a convenir",
+        "precio": 500,
+        "img": "/app/public/img/imagen1.jpeg",
+        "cantidad":1
+    }
+]
+

@@ -1,0 +1,44 @@
+.container{
+    padding-bottom:16px;
+    .row{
+        p {
+            font-size: map-get($font-size, small);
+            padding-bottom:45px;
+            & a {
+                color: black;
+                text-decoration: underline;
+            }
+        }
+        & #img-taller{
+            background-image: url(../imagenes/taller2.jpeg);
+            @include bg (center, no-repeat, cover);
+            height: 450px;
+            width: 90%;    
+        }
+    }
+
+}
+
+// queries
+
+@media screen and (min-width: 768px) {
+    .container{
+        padding-bottom: 45px;
+        .row{
+            & #img-taller{
+                height: 500px;
+            }
+        }
+    }
+}
+@media screen and (min-width: 1024px) {
+    .container{
+        .row{
+            & #img-taller{
+                height: 600px;
+                @include bg (center, no-repeat, 80%);
+            }
+        }
+    }
+}
+

@@ -1,0 +1,21 @@
+.navbar{
+    background-color: $color3 !important;
+    border-bottom: 2px solid $color1;
+    & .navbar-brand{
+        font-size: 22px !important;
+    }
+}
+
+#navbarNavDropdown{
+    background-color: $color3;
+        justify-content:end !important;
+        & .nav-link {
+            font-size: 14px;
+            color: $color1 !important;
+        }
+        a:hover{
+            color:$color2 !important;
+        }
+}
+
+

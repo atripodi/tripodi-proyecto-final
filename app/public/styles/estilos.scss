@@ -1,0 +1,30 @@
+@import "variables";
+@import "navBar";
+@import "index";
+@import "footer";
+@import "shop";
+@import "newsletter";
+@import "contact";
+@import "about";
+@import "breadcrumb";
+@import "cart";
+@import "offcanvas";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+::selection { 
+    background: #000; 
+    color:#fff; 
+}

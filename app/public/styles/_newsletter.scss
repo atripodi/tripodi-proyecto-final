@@ -1,0 +1,46 @@
+// estilos section newsletter
+.form-newsletter{
+    // background-color: violet;
+    border-top: 1px solid $color1;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    & p {
+        font-size: map-get($font-size, small);
+        margin-bottom: 0;
+        width: 300px;
+        text-align: center;
+        // background-color: yellow;
+    }
+    & .form-inline {
+        color: $color1;
+        font-size: map-get($font-size, small) !important;
+        justify-content: center !important;
+        padding-top: 10px;
+        & .mr-sm-2 {
+            margin-right: 10px;
+        }
+        & .form-control-sm{
+            border-bottom: $color1  solid 1px !important;
+        }
+        & .btn {
+            color: $color1;
+            text-decoration: none;
+            font-size: map-get($font-size, small); 
+            border: $color1 solid 1px !important;
+            margin-left: 10px;
+        }
+    }
+}
+
+@media screen and (min-width: 481px) {
+    .form-newsletter{
+        p {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+
+
+
