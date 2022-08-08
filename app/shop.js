@@ -1,5 +1,4 @@
 let inventarioProductos = []; // array vacío para capturar la info de stock.json
-
 const contenedorProductos = document.getElementById("contenedor-productos"); // Capturo el id "contenedor-productos" para mostrar dinámicamente todos los productos del array de artículos
 
 // FUNCIONES
@@ -12,7 +11,6 @@ const mostrarProductos = async () => {
         const response = await fetch ("../stock.json") // --> en formato Json
 
         inventarioProductos = await response.json(); // parseo, formato array de objetos
-        console.log(inventarioProductos)
         
         inventarioProductos.forEach(producto => {
             const article = document.createElement("article"); // genero el elemento article
@@ -36,6 +34,17 @@ const mostrarProductos = async () => {
                     </div>`
                     
             contenedorProductos.appendChild(article) 
+
+            const botonAgregarAlCarrito = document.getElementById(`btn${producto.id}`)
+
+            botonAgregarAlCarrito.addEventListener("click", () => {
+                botonAgregarAlCarrito.innerText = "Agregado!"
+                carritoOffcanvas(producto.id);
+                // console.log(producto.id);
+                // console.log(producto.nombre);
+                // console.log(producto.precio);
+            })
+
         })
 
         return inventarioProductos;
@@ -47,34 +56,19 @@ const mostrarProductos = async () => {
 
 mostrarProductos();
 
-// Función para agregar artículo al carrito
-
-const agregarAlCarrito = (inventarioProductos) => {
-
-    inventarioProductos.forEach(producto => {
-        const botonAgregarAlCarrito = document.getElementById(`btn${producto.id}`);
-
-        botonAgregarAlCarrito.addEventListener("click", () => {
-            carritoOffcanvas(producto.id);
-            botonAgregarAlCarrito.innerText = "Agregado!"
-            console.log(producto.id);
-            console.log(producto.nombre);
-            console.log(producto.precio);
-        })
-    })  
-}
-
-agregarAlCarrito(inventarioProductos);
-
 // Función para mostrar en offcanvas el detalle del carrito
 
 let carritoDeCompras = []; // --> array vacío para almacenar los datos que obtengo con click
+let totalCompra = 0;
 
 const carritoOffcanvas = (productoId) => {
     let producto = inventarioProductos.find(producto => producto.id === productoId); // busco con find si hay una coincidencia en el array con el productoId que paso por parámetro (1, 2, 3)
-    //producto.cantidad = 1; // inicializo la cantidad en 1
 
-    carritoDeCompras.push(producto);
+    if (producto != undefined){
+        carritoDeCompras.push(producto);
+    }
+
+    totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
 
     let div = document.createElement("div");
 
@@ -100,12 +94,17 @@ carritoOffcanvas();
 // Función para guardar en Storage
 
 function guardarStorage (){
-    let carritoGuardado = localStorage.setItem("Carrito", JSON.stringify(carritoDeCompras))
+    let storage = localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
+    console.log(storage)
+    let carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
     console.log(carritoGuardado)
 }
 
 guardarStorage();
 
-
+// function renovarStorage (){
+//     localStorage.removeItem("carritoGuardado");
+//     let carritoGuardado = localStorage.setItem("Carrito", JSON.stringify(carritoDeCompras))
+// }
 
 
