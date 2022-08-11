@@ -24,6 +24,28 @@
   color: #bfb8ae !important;
 }
 
+.cart-icon {
+  position: relative !important;
+}
+
+.cart-amount {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  height: 17px;
+  width: 17px;
+  font-size: 12px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 #carousel-index {
   height: 170px;
 }
@@ -694,6 +716,14 @@ footer ul li a:hover {
 .modal-active {
   opacity: 1;
   visibility: visible;
+}
+
+.offcanvas {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.offcanvas-footer {
+  display: none;
 }
 
 * {

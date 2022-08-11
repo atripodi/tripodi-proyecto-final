@@ -18,4 +18,22 @@
         }
 }
 
+.cart-icon{
+    position: relative !important;
+    // background-color: aqua !important;
+}
+
+.cart-amount{
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    height: 17px;
+    width: 17px;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+}
 
