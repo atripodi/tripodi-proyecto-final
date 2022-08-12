@@ -1,5 +1,4 @@
 let inventarioProductos = []; // array vacío para capturar la info de stock.json
-let carritoDeCompras = [];
 const contenedorProductos = document.getElementById("contenedor-productos"); // Capturo el id "contenedor-productos" para mostrar dinámicamente todos los productos del array de artículos
 
 // FUNCIONES
@@ -53,30 +52,27 @@ mostrarProductos();
 2) Función para agregar items al carrito y guardarlos en storage     
 */
 
-// let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
+let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function agregarItem(productoId){
 
     let productoSeleccionado = inventarioProductos.find(producto => producto.id === productoId); // busco con find si hay una coincidencia en el array de inventario con el productoId que paso por parámetro (1, 2, 3)
-    console.log(productoSeleccionado);
 
     carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
-    console.log(carritoDeCompras);
 
     let search = carritoDeCompras.find(producto => producto.id === productoId) // chequeo si el producto ya está en el carrito.
-    console.log(search)
 
     if (search === undefined){
             carritoDeCompras.push(productoSeleccionado);
-            console.log("no se encontró el producto, lo agrego al carrito de compras")
-            console.log(carritoDeCompras)
+            console.log("no se encontró el producto, lo agrego al carrito de compras") 
         } else {
             productoSeleccionado.cantidad++;
             console.log("actualizo cantidad del producto seleccionado")
-            console.log(carritoDeCompras)
+            localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
         }
 
-        localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+    mostrarCarrito();
 }
 
 /*
@@ -88,8 +84,31 @@ let mostrarCarrito = () =>{
     carritoDeCompras = JSON.parse(localStorage.getItem("carrito"))
 
     if (carritoDeCompras !== null) {
-        console.log(carritoDeCompras);
 
+        carritoDeCompras.forEach((producto)=>{
+            let div = document.createElement("div");
+            div.innerHTML = `<div class="modal-body">
+            <div class="offcanvas-carrito-items" id="offcanvas-carrito-items">
+                <div class="grid carrito-item">
+                    <div class="carrito-img g-sm-3">
+                        <img src="${producto.img}" alt="">
+                    </div>
+                    <div class="carrito-desc g-sm-9">
+                        <div >
+                            <h6>${producto.nombre}</h6>
+                            <div class="carrito-item-precio"> $ ${producto.precio}</div>
+                            <div class="carrito-item-cantidad">cantidad</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        
+        const bodyOffcanvas = document.querySelector(".offcanvas-body");
+        bodyOffcanvas.appendChild(div);})
+
+        // totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
+        
     } else {
         let div = document.createElement("div");
         div.innerHTML = `<div id= "carrito-vacio">
@@ -100,57 +119,5 @@ let mostrarCarrito = () =>{
     }
 }
 
+
 mostrarCarrito();
-
-// let totalCompra = 0;
-
-// const carritoOffcanvas = (productoId) => {
-
-//     totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
-
-//     let div = document.createElement("div");
-
-//     div.innerHTML = `<div id= "carrito-items">
-//                         <p>${producto.nombre}</p>
-//                         <p>Precio: $ ${producto.precio}</p>
-//                         <p id"cantidad${producto.id}"> Cantidad ${producto.cantidad}</p>
-//                         <button id "eliminar${producto.id}" class ="btn-eliminar"><i class="fa-solid fa-trash-can"></i></button> 
-//                     </div>
-//                     <div id= "carrito-footer">
-//                         <p>TOTAL</p>
-//                         <p class="carrito-total"></p>
-//                         <button class="carrito-checkout" type="button">Comprar</button>
-//                     </div>`;
-
-//     const bodyOffcanvas = document.querySelector(".offcanvas-body");
-//     bodyOffcanvas.appendChild(div);
-// }
-
-// carritoOffcanvas();
-
-
-// let totalCompra;
-
-// const carritoOffcanvas = () => {
-
-//     let carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
-//     console.log(carritoGuardado);
-    
-//     totalCompra = carritoGuardado.reduce((acc,el) => acc + el.precio, 0);
-
-//     let div = document.createElement("div");
-
-//     div.innerHTML = `<div id= "carrito-footer">
-//                             <p>TOTAL $ ${totalCompra} </p>
-//                             <p class="carrito-total"></p>
-//                             <button class="carrito-checkout" type="button">Comprar</button>
-//                     </div>`;
-
-//     const bodyOffcanvas = document.querySelector(".offcanvas-body");
-//     bodyOffcanvas.appendChild(div);
-// }
-
-// const bodyOffcanvas = document.getElementById("offcanvas-body")
-const footerOffcanvas = document.getElementById("offcanvas-footer")
-
-// función para renderizar carrito
