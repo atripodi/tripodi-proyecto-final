@@ -52,7 +52,8 @@ mostrarProductos();
 2) Función para agregar items al carrito y guardarlos en storage     
 */
 
-let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
+let carritoDeCompras;
+// let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function agregarItem(productoId){
 
@@ -90,10 +91,10 @@ let mostrarCarrito = () =>{
             div.innerHTML = `<div class="modal-body">
             <div class="offcanvas-carrito-items" id="offcanvas-carrito-items">
                 <div class="grid carrito-item">
-                    <div class="carrito-img g-sm-3">
+                    <div class="carrito-img">
                         <img src="${producto.img}" alt="">
                     </div>
-                    <div class="carrito-desc g-sm-9">
+                    <div class="carrito-desc">
                         <div >
                             <h6>${producto.nombre}</h6>
                             <div class="carrito-item-precio"> $ ${producto.precio}</div>
