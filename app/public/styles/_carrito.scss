@@ -1,10 +1,12 @@
 .offcanvas {
     font-family: 'Montserrat', sans-serif !important;
-  }
-  
-  .carrito-img {
+}
+
+.carrito-img img {
     height: 100px;
     width: 87px;
-  }
+}
 
-  
+.carrito-item{
+    display: flex;
+}

@@ -90,7 +90,7 @@ let mostrarCarrito = () =>{
             let div = document.createElement("div");
             div.innerHTML = `<div class="modal-body">
             <div class="offcanvas-carrito-items" id="offcanvas-carrito-items">
-                <div class="grid carrito-item">
+                <div class="carrito-item">
                     <div class="carrito-img">
                         <img src="${producto.img}" alt="">
                     </div>
