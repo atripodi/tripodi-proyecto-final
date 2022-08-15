@@ -75,7 +75,6 @@ function agregarItem(productoId){
             localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
 
         }
-    mostrarCarrito();
 }
 
 /*
@@ -123,6 +122,7 @@ let mostrarCarrito = () =>{
     }
 }
 
-mostrarCarrito();
+const botonCarrito = document.getElementById("carrito").addEventListener("click", mostrarCarrito)
+
 
 
