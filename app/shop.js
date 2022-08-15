@@ -56,23 +56,25 @@ let carritoDeCompras;
 // let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function agregarItem(productoId){
+    let productoSeleccionado = inventarioProductos.find(producto => producto.id === productoId); // busco con find si hay una coincidencia en el array de inventario con el productoId que paso por parámetro (1, 2, 3). Traigo un objeto con ese id.
 
-    let productoSeleccionado = inventarioProductos.find(producto => producto.id === productoId); // busco con find si hay una coincidencia en el array de inventario con el productoId que paso por parámetro (1, 2, 3)
+    carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || []; //verifico storage (array)
+    let search = carritoDeCompras.find(producto => producto.id === productoId); // chequeo si el producto (objeto) ya está en el carrito (array)
 
-    carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
-
-    let search = carritoDeCompras.find(producto => producto.id === productoId) // chequeo si el producto ya está en el carrito.
-
-    if (search === undefined){
+    if (search === undefined || search.id !== productoId){
+            console.log("no se encontró el producto seleccionado lo agrego al carrito de compras")
             carritoDeCompras.push(productoSeleccionado);
-            console.log("no se encontró el producto, lo agrego al carrito de compras") 
-        } else {
-            productoSeleccionado.cantidad++;
-            console.log("actualizo cantidad del producto seleccionado")
             localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
-        }
+        } else {
+            console.log("el producto seleccionado ya está en el carrito")
+            search.cantidad++;
 
-    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+            carritoDeCompras = carritoDeCompras.filter((x) => x.id !== productoId)
+            console.log(carritoDeCompras)
+            carritoDeCompras.push(search)
+            localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+
+        }
     mostrarCarrito();
 }
 
@@ -80,6 +82,7 @@ function agregarItem(productoId){
 3) Función para mostrar artículos en el carrito 
 */
 
+let totalCompra = 0;
 let mostrarCarrito = () =>{
 
     carritoDeCompras = JSON.parse(localStorage.getItem("carrito"))
@@ -98,7 +101,7 @@ let mostrarCarrito = () =>{
                         <div >
                             <h6>${producto.nombre}</h6>
                             <div class="carrito-item-precio"> $ ${producto.precio}</div>
-                            <div class="carrito-item-cantidad">cantidad</div>
+                            <div class="carrito-item-cantidad"> Cantidad: ${producto.cantidad} </div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +111,7 @@ let mostrarCarrito = () =>{
         const bodyOffcanvas = document.querySelector(".offcanvas-body");
         bodyOffcanvas.appendChild(div);})
 
-        // totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
+        totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
         
     } else {
         let div = document.createElement("div");
@@ -120,5 +123,6 @@ let mostrarCarrito = () =>{
     }
 }
 
-
 mostrarCarrito();
+
+
