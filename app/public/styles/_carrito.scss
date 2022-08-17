@@ -10,3 +10,47 @@
 .carrito-item{
     display: flex;
 }
+
+.carrito-desc{
+    font-size: 14px;
+    height: 100px;
+    // background-color: yellow;
+    width: 100%;
+    padding-left: 10px;
+    & .carrito-item-cantidad{
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        justify-content: space-between;
+        padding: 5px 0px 5px 0px;
+        border: 1px solid #f1f1f1;
+    }
+    & .carrito-item-precio{
+        padding-bottom: 25px;
+    }
+
+}
+
+.carrito-footer{
+    // background-color: violet;
+    & .carrito-total{
+        padding-top:20px ;
+    }
+    & .carrito-finalizar{
+        padding-top: 20px;
+        .btn-finalizar-compra{
+            border: #000 solid 1px;
+            width: 100%;
+        }
+    }
+}
+
+.btn-eliminar-compra{
+    font-size: 12px;
+    // background-color: red;
+    width: 100%;
+}
+
+
+
+

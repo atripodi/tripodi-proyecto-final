@@ -28,9 +28,9 @@
                         <li class="nav-item">
                         <a class="nav-link" href="./shop.html">SHOP</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                         <a class="nav-link" href="./contact.html">CONTACTO</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <button class="btn" id="carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="bi bi-bag"></i></i></button>
                         </li>
@@ -56,12 +56,21 @@
 
         <!-- offcanvas carrito -->
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h5 id="offcanvasRightLabel">Carrito de compras</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div id="offcanvas-body" class="offcanvas-body">
+                <div class="offcanvas-items" id="offcanvas-items">
+                    <!-- <div class="carrito-item-cantidad"> 
+                        <i class="bi bi-dash-lg"></i>
+                        <div id=${producto.id}>${producto.cantidad}</div>
+                        <i class="bi bi-plus-lg"></i>
+                    </div> -->
+                </div>
+                <div class="offcanvas-footer" id="offcanvas-footer">
+                </div>
             </div>
         </div>
 

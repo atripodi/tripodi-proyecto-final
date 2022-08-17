@@ -1,6 +1,6 @@
 let inventarioProductos = []; // array vacío para capturar la info de stock.json
 const contenedorProductos = document.getElementById("contenedor-productos"); // Capturo el id "contenedor-productos" para mostrar dinámicamente todos los productos del array de artículos
-
+const productosPintados = []
 // FUNCIONES
 
 /*
@@ -25,7 +25,7 @@ const mostrarProductos = async () => {
                         <p>${producto.desc}<br>
                         ${producto.dimensiones}
                         </p>
-                    </div>
+                    </div> 
                     <div class="product-price">
                         <span class="price">$ ${producto.precio}</span>
                         <button type="button" class="btn agregar-al-carrito btn-dark border-0 rounded-0" id="btn${producto.id}">Agregar al carrito</button>
@@ -53,7 +53,6 @@ mostrarProductos();
 */
 
 let carritoDeCompras;
-// let carritoDeCompras = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function agregarItem(productoId){
     let productoSeleccionado = inventarioProductos.find(producto => producto.id === productoId); // busco con find si hay una coincidencia en el array de inventario con el productoId que paso por parámetro (1, 2, 3). Traigo un objeto con ese id.
@@ -73,7 +72,6 @@ function agregarItem(productoId){
             console.log(carritoDeCompras)
             carritoDeCompras.push(search)
             localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
-
         }
 }
 
@@ -83,24 +81,36 @@ function agregarItem(productoId){
 
 let totalCompra = 0;
 let mostrarCarrito = () =>{
-
+    
     carritoDeCompras = JSON.parse(localStorage.getItem("carrito"))
 
     if (carritoDeCompras !== null) {
 
         carritoDeCompras.forEach((producto)=>{
-            let div = document.createElement("div");
-            div.innerHTML = `<div class="modal-body">
+
+            let subtotal = producto.precio * producto.cantidad;
+            console.log(subtotal);
+
+            if(productosPintados.find ((p) =>p.nombre === producto.nombre)){
+                console.log("ya está pintado")
+            } else {
+                console.log("no está pintado")
+                productosPintados.push(producto)
+                let div = document.createElement("div");
+            div.innerHTML = 
+        `<div class="modal-body">
             <div class="offcanvas-carrito-items" id="offcanvas-carrito-items">
                 <div class="carrito-item">
                     <div class="carrito-img">
                         <img src="${producto.img}" alt="">
                     </div>
                     <div class="carrito-desc">
-                        <div >
+                        <div>
                             <h6>${producto.nombre}</h6>
-                            <div class="carrito-item-precio"> $ ${producto.precio}</div>
-                            <div class="carrito-item-cantidad"> Cantidad: ${producto.cantidad} </div>
+                            <div class="carrito-item-precio"><strong>$ ${subtotal}</strong></div>
+                            <div class="carrito-item-cantidad">
+                                <div id=${producto.id}>Cantidad: ${producto.cantidad}</div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -108,9 +118,31 @@ let mostrarCarrito = () =>{
         </div>`;
         
         const bodyOffcanvas = document.querySelector(".offcanvas-body");
-        bodyOffcanvas.appendChild(div);})
+        bodyOffcanvas.appendChild(div)
+        };
+    
+    })
 
-        totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio, 0);
+        totalCompra = carritoDeCompras.reduce((acc,el) => acc + el.precio * el.cantidad, 0);
+        console.log(totalCompra)
+
+        let offcanvasFooter = document.createElement("div");
+            offcanvasFooter.innerHTML = 
+            `<div class="carrito-footer">
+                <div class="carrito-total">
+                    <h4>Total: $ ${totalCompra} </h4>
+                </div>
+                <div class="carrito-finalizar">
+                    <button type="button" class="btn btn-dark border-0 rounded-0 btn-finalizar-compra">Finalizar compra</button>
+                </div>
+                <div class="carrito-eliminar">
+                    <button type="button" class="btn btn-light border-0 rounded-0 btn-eliminar-compra">Eliminar artículos seleccionados</button>
+                </div>
+            </div>
+            `
+    
+        const bodyOffcanvas = document.querySelector(".offcanvas-body");
+        bodyOffcanvas.appendChild(offcanvasFooter)
         
     } else {
         let div = document.createElement("div");
@@ -122,7 +154,33 @@ let mostrarCarrito = () =>{
     }
 }
 
-const botonCarrito = document.getElementById("carrito").addEventListener("click", mostrarCarrito)
+mostrarCarrito()
+
+/*
+4) Funciones del carrito 
+*/
+
+const btnFinalizarCompra = document.querySelector(".btn-finalizar-compra").addEventListener("click", finalizarCompra)
+
+function finalizarCompra() {
+    removerStorage();
+
+    let compraFinalizada = document.createElement("div");
+    compraFinalizada.innerHTML = 
+    `<div id= "compra-finalizada">
+        <p> Muchas gracias por su compra! </p>
+    </div>`
+
+    const bodyOffcanvas = document.querySelector(".offcanvas-body");
+    bodyOffcanvas.appendChild(compraFinalizada);
+}
+
+const btnBorrarCarrito = document.querySelector(".btn-eliminar-compra").addEventListener("click", removerStorage)
+
+function removerStorage() {
+    localStorage.removeItem("carrito")
+}
+
 
 
 
